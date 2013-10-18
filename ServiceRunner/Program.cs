@@ -18,6 +18,8 @@ namespace ServiceRunner
         static void Main(string[] args)
         {
             var p = new Program();
+
+            p.DoStuff();
         }
     }
 
