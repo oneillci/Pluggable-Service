@@ -11,12 +11,13 @@ namespace SecondService
     [ExportMetadata("Description", "The second one")]
     public class SecondJob : IJob
     {
-        private Logger logger;
-        private Timer timer;
+        private readonly Logger logger;
+        private readonly Timer timer;
 
         public SecondJob()
         {
             this.logger = LogManager.GetCurrentClassLogger();
+            logger.Debug("Ctor");
             this.timer = new Timer(8000);
             timer.Elapsed += (s, e) => Execute();
         }

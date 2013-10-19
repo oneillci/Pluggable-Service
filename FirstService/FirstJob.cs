@@ -11,12 +11,13 @@ namespace FirstService
     [ExportMetadata("Description", "The first one")]
     public class FirstJob : IJob
     {
-        private Logger logger;
-        private Timer timer;
+        private readonly Logger logger;
+        private readonly Timer timer;
 
         public FirstJob()
         {
             this.logger = LogManager.GetCurrentClassLogger();
+            logger.Debug("Ctor");
             this.timer = new Timer(5000);
             timer.Elapsed += (s, e) => Execute();
         }
