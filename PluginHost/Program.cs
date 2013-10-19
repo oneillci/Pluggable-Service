@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
+using System.Reflection;
 using Common;
 using NLog;
 
@@ -15,7 +16,8 @@ namespace PluginHost
 
         public Program()
         {
-            var catalog = new AssemblyCatalog(typeof(Program).Assembly);
+            var path = System.IO.Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).AbsolutePath) + "\\plugins";
+            var catalog = new DirectoryCatalog(path);
             var container = new CompositionContainer(catalog);
             container.ComposeParts(this);
         }
