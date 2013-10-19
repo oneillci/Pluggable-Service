@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Timers;
 using Common;
 using NLog;
 
@@ -11,16 +12,33 @@ namespace SecondService
     public class SecondJob : IJob
     {
         private Logger logger;
+        private Timer timer;
 
         public SecondJob()
         {
             this.logger = LogManager.GetCurrentClassLogger();
+            this.timer = new Timer(8000);
+            timer.Elapsed += (s, e) => Execute();
+        }
+
+        public void Start()
+        {
+            timer.Start();
+            Console.WriteLine("Starting second timer");
+            logger.Debug("Starting timer");
+        }
+
+        public void Stop()
+        {
+            timer.Stop();
+            Console.WriteLine("Stopping second timer");
+            logger.Debug("Stopping timer");
         }
 
         public void Execute()
         {
             logger.Debug("Second job executing");
-            logger.Warn("second is warning!");
+            //logger.Warn("second is warning!");
             Console.WriteLine("Second job executing");
         }
     }

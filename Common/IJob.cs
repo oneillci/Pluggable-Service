@@ -9,5 +9,7 @@ namespace Common
     public interface IJob
     {
         void Execute();
+        void Start();
+        void Stop();
     }
 }
