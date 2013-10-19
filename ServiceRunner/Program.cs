@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
+using Common;
 using NLog;
 
 namespace PluginHost
@@ -35,47 +36,5 @@ namespace PluginHost
                 job.Execute();
             }
         }
-    }
-
-    public interface IJob
-    {
-        void Execute();
-    }
-
-    [Export(typeof(IJob))]
-    [ExportMetadata("Description", "The first one")]
-    public class FirstJob : IJob
-    {
-        private Logger logger;
-
-        public FirstJob()
-        {
-            this.logger = LogManager.GetCurrentClassLogger();
-        }
-
-        public void Execute()
-        {
-            logger.Debug("First job executing");
-            Console.WriteLine("First job executing");
-        }
-    }
-    
-    [Export(typeof(IJob))]
-    [ExportMetadata("Description", "The second one")]
-    public class SecondJob : IJob
-    {
-        private Logger logger;
-
-        public SecondJob()
-        {
-            this.logger = LogManager.GetCurrentClassLogger();
-        }
-
-        public void Execute()
-        {
-            logger.Debug("Second job executing");
-            logger.Warn("second is warning!");
-            Console.WriteLine("Second job executing");
-        }
-    }
+    }               
 }
