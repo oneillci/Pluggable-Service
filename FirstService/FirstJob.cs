@@ -16,6 +16,8 @@ namespace FirstService
         private readonly Logger logger;
         private readonly Timer timer;
 
+        public string CronSchedule { get { return "";} }
+
         public FirstJob()
         {
             Console.WriteLine("FirstJob ctor");

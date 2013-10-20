@@ -11,6 +11,7 @@ namespace Common
         void Execute();
         void Start();
         void Stop();
+        string CronSchedule { get; }
     }
 
     public interface IJobMetadata

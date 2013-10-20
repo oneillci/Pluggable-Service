@@ -16,6 +16,8 @@ namespace SecondService
         private readonly Logger logger;
         private readonly Timer timer;
 
+        public string CronSchedule { get { return ""; } }
+
         public SecondJob()
         {
             Console.WriteLine("SecondJob ctor");
