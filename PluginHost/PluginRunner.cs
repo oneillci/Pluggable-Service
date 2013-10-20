@@ -35,6 +35,9 @@ namespace PluginHost
 
         public void ExecutePlugins()
         {
+            // read http://quartznet.sourceforge.net/tutorial/lesson_3.html
+            // jobs should only throw JobExecutionException, so wrap all in try/catch
+
             Console.WriteLine("PluginRunner.ExecutePlugins");
             logger.Debug("ExecutePlugins");
             foreach (var job in Jobs)
