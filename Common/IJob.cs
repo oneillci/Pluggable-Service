@@ -12,4 +12,9 @@ namespace Common
         void Start();
         void Stop();
     }
+
+    public interface IJobMetadata
+    {
+        string Description { get; }
+    }
 }

@@ -13,7 +13,7 @@ namespace PluginHost
     class PluginRunner
     {
         [ImportMany]
-        private IEnumerable<IJob> Jobs { get; set; }
+        private IEnumerable<Lazy<IJob, IJobMetadata>> Jobs { get; set; }
 
         Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -39,7 +39,9 @@ namespace PluginHost
             logger.Debug("ExecutePlugins");
             foreach (var job in Jobs)
             {
-                job.Start();
+                Console.WriteLine("Excuting " + job.Metadata.Description);
+                logger.Debug("Executing {0}", job.Metadata.Description);
+                job.Value.Start();
             }
         }
 
@@ -49,8 +51,11 @@ namespace PluginHost
             logger.Debug("StopPlugins");
             foreach (var job in Jobs)
             {
-                job.Stop();
+                Console.WriteLine("Stopping " + job.Metadata.Description);
+                logger.Debug("Stopping {0}", job.Metadata.Description);
+                job.Value.Stop();
             }
         }
     }
+     
 }

@@ -9,7 +9,7 @@ using NLog;
 namespace FirstService
 {
     [Export(typeof(IJob))]
-    [ExportMetadata("Description", "The first one")]
+    [ExportMetadata("Description", "First description")]
     public class FirstJob : IJob
     {
         public const string LogSource = "CiaranServiceNameTest1";
