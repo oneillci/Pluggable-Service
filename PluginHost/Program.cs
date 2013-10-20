@@ -8,30 +8,35 @@ namespace PluginHost
 {
     class Program
     {        
-        public const string LogSource = "CiaranServiceNameTest1";
+        public const string LogSource = "CiaranServiceNameTest1";        
 
         static void Main(string[] args)
         {
+            var logger = LogManager.GetCurrentClassLogger();
+
             HostFactory.Run(x =>
             {
                 x.Service<PluginRunner>(s =>
                 {
                     s.ConstructUsing(() =>
                     {
-                        EventLog.WriteEntry(LogSource, "construct using");
+                        Console.WriteLine("Construct using");
+                        //logger.Debug("construct using");
                         return new PluginRunner();
                     });
                     
                     s.WhenStarted(y =>
                     {
-                        EventLog.WriteEntry(LogSource, "WhenStarted");
+                        Console.WriteLine("WhenStarted");
+                        //logger.Debug("WhenStarted");                       
                         y.ConfigurePlugins();
                         y.ExecutePlugins();
                         
                     });
                     s.WhenStopped(y =>
                     {
-                        EventLog.WriteEntry(Program.LogSource, "WhenStopped");
+                        Console.WriteLine("WhenStopped");
+                        //logger.Debug("WhenStopped");
                         y.StopPlugins();                        
                     });
                 });

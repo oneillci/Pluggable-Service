@@ -18,9 +18,8 @@ namespace SecondService
 
         public SecondJob()
         {
-            EventLog.WriteEntry(LogSource, "SecondJob Ctor");
-            //this.logger = LogManager.GetCurrentClassLogger();
-            //logger.Debug("Ctor");
+            Console.WriteLine("SecondJob ctor");
+            this.logger = LogManager.GetCurrentClassLogger();
             this.timer = new Timer(8000);
             timer.Elapsed += (s, e) => Execute();
         }
@@ -28,23 +27,20 @@ namespace SecondService
         public void Start()
         {
             timer.Start();
-            EventLog.WriteEntry(LogSource, "SecondJob Start");
-            Console.WriteLine("Starting second timer");
-            //logger.Debug("Starting timer");
+            Console.WriteLine("SecondJob Starting second timer");
+            logger.Debug("Starting timer");
         }
 
         public void Stop()
         {
             timer.Stop();
-            EventLog.WriteEntry(LogSource, "SecondJob Stop");
-            Console.WriteLine("Stopping second timer");
-            //logger.Debug("Stopping timer");
+            Console.WriteLine("SecondJob Stopping second timer");
+            logger.Debug("Stopping timer");
         }
 
         public void Execute()
         {
-            EventLog.WriteEntry(LogSource, "SecondJob executing");
-            //logger.Debug("Second job executing");
+            logger.Debug("Second job executing");
             //logger.Warn("second is warning!");
             Console.WriteLine("Second job executing");
         }

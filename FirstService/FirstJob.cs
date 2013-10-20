@@ -18,9 +18,8 @@ namespace FirstService
 
         public FirstJob()
         {
-            EventLog.WriteEntry(LogSource, "FirstJob Ctor");
-            //this.logger = LogManager.GetCurrentClassLogger();
-            //logger.Debug("Ctor");
+            Console.WriteLine("FirstJob ctor");
+            this.logger = LogManager.GetCurrentClassLogger();
             this.timer = new Timer(5000);
             timer.Elapsed += (s, e) => Execute();
         }
@@ -28,24 +27,21 @@ namespace FirstService
         public void Start()
         {
             timer.Start();
-            EventLog.WriteEntry(LogSource, "FirstJob starting timer");
-            Console.WriteLine("Starting first timer");
-            //logger.Debug("Starting timer");
+            Console.WriteLine("FirstJob Starting first timer");
+            logger.Debug("Starting timer");
         }
 
         public void Stop()
         {
             timer.Stop();
-            EventLog.WriteEntry(LogSource, "FirstJob stopping timer");
-            Console.WriteLine("Stopping first timer");
-            //logger.Debug("Stopping timer");
+            Console.WriteLine("FirstJob Stopping first timer");
+            logger.Debug("Stopping timer");
         }
 
         public void Execute()
-        {
-            //logger.Debug("First job executing");
-            EventLog.WriteEntry(LogSource, "FirstJob executing");
+        {            
             Console.WriteLine("First job executing");
+            logger.Debug("First job executing");
         }
     }
 }
