@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Timers;
 using Common;
@@ -11,13 +12,15 @@ namespace SecondService
     [ExportMetadata("Description", "The second one")]
     public class SecondJob : IJob
     {
+        public const string LogSource = "CiaranServiceNameTest1";
         private readonly Logger logger;
         private readonly Timer timer;
 
         public SecondJob()
         {
-            this.logger = LogManager.GetCurrentClassLogger();
-            logger.Debug("Ctor");
+            EventLog.WriteEntry(LogSource, "SecondJob Ctor");
+            //this.logger = LogManager.GetCurrentClassLogger();
+            //logger.Debug("Ctor");
             this.timer = new Timer(8000);
             timer.Elapsed += (s, e) => Execute();
         }
@@ -25,20 +28,23 @@ namespace SecondService
         public void Start()
         {
             timer.Start();
+            EventLog.WriteEntry(LogSource, "SecondJob Start");
             Console.WriteLine("Starting second timer");
-            logger.Debug("Starting timer");
+            //logger.Debug("Starting timer");
         }
 
         public void Stop()
         {
             timer.Stop();
+            EventLog.WriteEntry(LogSource, "SecondJob Stop");
             Console.WriteLine("Stopping second timer");
-            logger.Debug("Stopping timer");
+            //logger.Debug("Stopping timer");
         }
 
         public void Execute()
         {
-            logger.Debug("Second job executing");
+            EventLog.WriteEntry(LogSource, "SecondJob executing");
+            //logger.Debug("Second job executing");
             //logger.Warn("second is warning!");
             Console.WriteLine("Second job executing");
         }
