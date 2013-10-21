@@ -16,7 +16,13 @@ namespace FirstService
         private readonly Logger logger;
         private readonly Timer timer;
 
-        public string CronSchedule { get { return "";} }
+        /// <summary>
+        /// "1-59/2 * * * * ?" runs every 2 minutes from minute 1 to 59 on every hour of every day
+        /// <para>
+        /// "1-59/2 7-19 * * * ?" runs every 2 minutes from minute 1 to 59 between hours of 7:00 and 19:59 of every day
+        /// </para>
+        /// </summary>
+        public string CronSchedule { get { return "1-59/2 * * * * ?"; } }
 
         public FirstJob()
         {
