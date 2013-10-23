@@ -1,16 +1,16 @@
 ﻿using System;
 using System.ComponentModel.Composition;
-using System.Diagnostics;
 using System.Linq;
 using System.Timers;
 using Common;
 using NLog;
+using Quartz;
 
 namespace FirstService
 {
-    [Export(typeof(IJob))]
+    [Export(typeof(IObgJob))]
     [ExportMetadata("Description", "First description")]
-    public class FirstJob : IJob
+    public class FirstJob : IObgJob
     {
         public const string LogSource = "CiaranServiceNameTest1";
         private readonly Logger logger;
@@ -26,29 +26,25 @@ namespace FirstService
 
         public FirstJob()
         {
-            Console.WriteLine("FirstJob ctor");
             this.logger = LogManager.GetCurrentClassLogger();
             this.timer = new Timer(5000);
-            timer.Elapsed += (s, e) => Execute();
+            //timer.Elapsed += (s, e) => Execute();
         }
 
         public void Start()
         {
             timer.Start();
-            Console.WriteLine("FirstJob Starting first timer");
             logger.Debug("Starting timer");
         }
 
         public void Stop()
         {
             timer.Stop();
-            Console.WriteLine("FirstJob Stopping first timer");
             logger.Debug("Stopping timer");
         }
 
-        public void Execute()
+        public void Execute(IJobExecutionContext jobContext)
         {            
-            Console.WriteLine("First job executing");
             logger.Debug("First job executing");
         }
     }

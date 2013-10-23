@@ -1,16 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Quartz;
 
 namespace Common
 {
-    public interface IJob
+    //public interface IJob
+    //{
+    //    void Execute();
+    //    void Start();
+    //    void Stop();
+    //    string CronSchedule { get; }
+    //}
+
+    public interface IObgJob : IJob
     {
-        void Execute();
-        void Start();
-        void Stop();
         string CronSchedule { get; }
     }
 
