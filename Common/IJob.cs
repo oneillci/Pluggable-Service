@@ -14,7 +14,7 @@ namespace Common
 
     public interface IObgJob : IJob
     {
-        string CronSchedule { get; }
+        string CronExpression { get; }
     }
 
     public interface IJobMetadata

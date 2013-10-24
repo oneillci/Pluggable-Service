@@ -21,11 +21,12 @@ namespace FirstService
         /// "1-59/2 7-19 * * * ?" runs every 2 minutes from minute 1 to 59 between hours of 7:00 and 19:59 of every day
         /// </para>
         /// </summary>
-        public string CronSchedule { get { return "1-59/2 * * * * ?"; } }
+        public string CronExpression { get { return "1-59/2 * * * * ?"; } }
 
         public FirstJob()
         {
             this.logger = LogManager.GetCurrentClassLogger();
+            logger.Debug("");
         }
 
         public void Execute(IJobExecutionContext jobContext)

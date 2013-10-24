@@ -8,7 +8,7 @@ namespace PluginHost
 {
     class Program
     {        
-        public const string LogSource = "CiaranServiceNameTest1";        
+        public static string LogSource = "CiaranServiceNameTest1";        
 
         static void Main(string[] args)
         {
@@ -21,14 +21,14 @@ namespace PluginHost
                     s.ConstructUsing(() =>
                     {
                         Console.WriteLine("Construct using");
-                        //logger.Debug("construct using");
+                        //EventLog.WriteEntry(LogSource, "construct using");
                         return new PluginHost();
                     });
                     
                     s.WhenStarted(y =>
                     {
                         Console.WriteLine("WhenStarted");
-                        //logger.Debug("WhenStarted");                       
+                        //EventLog.WriteEntry(LogSource, "WhenStarted");                       
                         y.ConfigurePlugins();
                         y.ExecutePlugins();
                         
@@ -36,7 +36,7 @@ namespace PluginHost
                     s.WhenStopped(y =>
                     {
                         Console.WriteLine("WhenStopped");
-                        //logger.Debug("WhenStopped");
+                        //EventLog.WriteEntry(LogSource, "WhenStopped");
                         y.StopPlugins();                        
                     });
                 });
@@ -47,11 +47,6 @@ namespace PluginHost
                 x.SetDisplayName("Ciaran Display Name");
                 x.SetServiceName("CiaranServiceName");                
             });
-            //var p = new PluginRunner();
-            //p.ExecutePlugins();
-            //Console.WriteLine("\n\nPress any key to finish");
-            //Console.ReadKey();
-            //p.StopPlugins();
         }
     }   
         

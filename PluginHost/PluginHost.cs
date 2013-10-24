@@ -57,7 +57,7 @@ namespace PluginHost
 
                 ITrigger trigger = TriggerBuilder.Create()
                                                  .WithIdentity(job.Metadata.Description + "_TRIGGER")
-                                                 .WithCronSchedule(job.Value.CronSchedule)
+                                                 .WithCronSchedule(job.Value.CronExpression)
                                                  //.WithSimpleSchedule(x => x.WithIntervalInHours(1).RepeatForever())
                                                  .StartAt(DateBuilder.FutureDate(2, IntervalUnit.Second))
                                                  .Build();
