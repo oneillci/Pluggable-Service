@@ -16,13 +16,13 @@ namespace PluginHost
 
             HostFactory.Run(x =>
             {
-                x.Service<PluginRunner>(s =>
+                x.Service<PluginHost>(s =>
                 {
                     s.ConstructUsing(() =>
                     {
                         Console.WriteLine("Construct using");
                         //logger.Debug("construct using");
-                        return new PluginRunner();
+                        return new PluginHost();
                     });
                     
                     s.WhenStarted(y =>

@@ -14,7 +14,6 @@ namespace FirstService
     {
         public const string LogSource = "CiaranServiceNameTest1";
         private readonly Logger logger;
-        private readonly Timer timer;
 
         /// <summary>
         /// "1-59/2 * * * * ?" runs every 2 minutes from minute 1 to 59 on every hour of every day
@@ -27,20 +26,6 @@ namespace FirstService
         public FirstJob()
         {
             this.logger = LogManager.GetCurrentClassLogger();
-            this.timer = new Timer(5000);
-            //timer.Elapsed += (s, e) => Execute();
-        }
-
-        public void Start()
-        {
-            timer.Start();
-            logger.Debug("Starting timer");
-        }
-
-        public void Stop()
-        {
-            timer.Stop();
-            logger.Debug("Stopping timer");
         }
 
         public void Execute(IJobExecutionContext jobContext)
