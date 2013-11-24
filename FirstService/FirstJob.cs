@@ -8,6 +8,7 @@ using Quartz;
 
 namespace FirstService
 {
+    [Export]
     [Export(typeof(IObgJob))]
     [ExportMetadata("Description", "First description")]
     public class FirstJob : IObgJob
@@ -23,7 +24,8 @@ namespace FirstService
         /// </summary>
         public string CronExpression { get { return "1-59/2 * * * * ?"; } }
 
-        public FirstJob()
+        [ImportingConstructor]
+        public FirstJob(ITest test, IRepository<User> u)
         {
             this.logger = LogManager.GetCurrentClassLogger();
             logger.Debug("");

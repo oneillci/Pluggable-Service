@@ -8,6 +8,7 @@ using Quartz;
 
 namespace SecondService
 {
+    [Export]
     [Export(typeof(IObgJob))]
     [ExportMetadata("Description", "Second description")]
     [DisallowConcurrentExecution]
@@ -22,9 +23,10 @@ namespace SecondService
         /// "1-59/2 * 7-19 * * ?" runs every 2 seconds from minute 1 to 59 between hours of 7:00 and 19:59 of every day
         /// </para>
         /// </summary>
-        public string CronExpression { get { return "1-59/5 * 22-23 * * ?"; } }
+        public string CronExpression { get { return "1-59/5 * 21-23 * * ?"; } }
 
-        public SecondJob()
+        [ImportingConstructor]
+        public SecondJob(ITest test)
         {
             this.logger = LogManager.GetCurrentClassLogger();
             logger.Debug("");
